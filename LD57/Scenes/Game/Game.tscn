@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://du37a28gb6on2"]
+
+[ext_resource type="Script" uid="uid://cm67tp0q10qsv" path="res://Scenes/Game/Game.cs" id="1_rdw05"]
+[ext_resource type="Script" uid="uid://bdet4lgxavvj2" path="res://Scenes/Game/GameInput.cs" id="2_gwu2e"]
+
+[node name="Game" type="Node" node_paths=PackedStringArray("input")]
+script = ExtResource("1_rdw05")
+input = NodePath("GameInput")
+
+[node name="GameInput" type="Node" parent="."]
+script = ExtResource("2_gwu2e")
