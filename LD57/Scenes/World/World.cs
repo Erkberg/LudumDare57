@@ -7,6 +7,7 @@ public partial class World : Node2D
 
     [Export] public Player player;
     [Export] public Vector2 bounds;
+    [Export] public float gridOffset = 100f;
 
     public override void _EnterTree()
     {

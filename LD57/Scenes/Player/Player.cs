@@ -3,7 +3,6 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
-    [Export] private float posOffset = 100f;
     [Export] private float muzzleOffset = 25f;
     [Export] private Node2D muzzle;
     [Export] private Timer shootCooldownTimer;
@@ -27,7 +26,7 @@ public partial class Player : CharacterBody2D
     private void Move()
     {
         Vector2 movement = input.GetMovement();
-        Position = new Vector2(Mathf.RoundToInt(movement.X) * posOffset, Mathf.RoundToInt(movement.Y) * posOffset);
+        Position = new Vector2(Mathf.RoundToInt(movement.X) * World.inst.gridOffset, Mathf.RoundToInt(movement.Y) * World.inst.gridOffset);
     }
 
     private void Shoot()

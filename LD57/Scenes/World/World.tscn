@@ -1,14 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://br6uwc6kmc3bh"]
+[gd_scene load_steps=6 format=3 uid="uid://br6uwc6kmc3bh"]
 
 [ext_resource type="Script" uid="uid://bnmt8y524qtu8" path="res://Scenes/World/World.cs" id="1_0nbjp"]
 [ext_resource type="PackedScene" uid="uid://d3aft5u1nxmsf" path="res://Scenes/Player/Base.tscn" id="2_ouhkt"]
 [ext_resource type="PackedScene" uid="uid://13wrxxljsy7i" path="res://Scenes/Player/Player.tscn" id="2_xf6vi"]
-[ext_resource type="PackedScene" uid="uid://b1bltvurq11mo" path="res://Scenes/Enemies/Enemy.tscn" id="4_5jr8x"]
+[ext_resource type="Script" uid="uid://bak4a176tri4o" path="res://Scenes/Enemies/EnemySpawner.cs" id="4_5jr8x"]
+[ext_resource type="PackedScene" uid="uid://b1bltvurq11mo" path="res://Scenes/Enemies/Enemy.tscn" id="5_27jhl"]
 
 [node name="World" type="Node2D" node_paths=PackedStringArray("player")]
 script = ExtResource("1_0nbjp")
 player = NodePath("Base/Player")
 bounds = Vector2(1280, 720)
+gridOffset = 64.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(640, 360)
@@ -18,9 +20,12 @@ zoom = Vector2(0.84, 0.84)
 position = Vector2(640, 360)
 
 [node name="Player" parent="Base" instance=ExtResource("2_xf6vi")]
-posOffset = 64.0
 
-[node name="EnemySpawner" type="Node2D" parent="."]
+[node name="EnemySpawner" type="Node2D" parent="." node_paths=PackedStringArray("spawnTimer")]
+script = ExtResource("4_5jr8x")
+enemyScene = ExtResource("5_27jhl")
+spawnTimer = NodePath("SpawnTimer")
 
-[node name="Enemy" parent="EnemySpawner" instance=ExtResource("4_5jr8x")]
-position = Vector2(0, 360)
+[node name="SpawnTimer" type="Timer" parent="EnemySpawner"]
+wait_time = 3.0
+autostart = true
