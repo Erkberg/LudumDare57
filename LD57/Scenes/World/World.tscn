@@ -7,6 +7,7 @@
 [node name="World" type="Node2D" node_paths=PackedStringArray("player")]
 script = ExtResource("1_0nbjp")
 player = NodePath("Base/Player")
+bounds = Vector2(1280, 720)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(640, 360)
