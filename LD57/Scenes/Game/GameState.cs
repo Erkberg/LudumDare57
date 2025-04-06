@@ -15,7 +15,20 @@ public partial class GameState : Node
     {
         foreach (UpgradeData upgrade in Game.inst.data.upgrades)
         {
-            upgradeLevels.Add(upgrade.name, 0);
+            upgradeLevels.Add(upgrade.stat, 0);
+        }
+    }
+
+    public override void _Process(double delta)
+    {
+        CheckLevelCheat();
+    }
+
+    private void CheckLevelCheat()
+    {
+        if (Game.inst.input.GetLevelCheatDown())
+        {
+            AddScraps(GetScrapsForNextLevel());
         }
     }
 
@@ -32,7 +45,7 @@ public partial class GameState : Node
 
     public int GetScrapsForNextLevel()
     {
-        return Level + 1 * 20;
+        return Level + 1 * 4;
     }
 
     public float GetScrapsForNextLevelPercentage()

@@ -13,4 +13,9 @@ public partial class Game : Node
     {
         inst = this;
     }
+
+    public void SetPaused(bool paused)
+    {
+        GetTree().Paused = paused;
+    }
 }

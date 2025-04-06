@@ -16,7 +16,7 @@ public partial class GameData : Node
 
     public UpgradeData GetUpgradeData(string statName)
     {
-        return (UpgradeData)upgrades.Where(x => x.name == statName);
+        return upgrades.Where(x => x.stat == statName).FirstOrDefault();
     }
 
     public bool IsMaxLevel(string statName)
@@ -27,12 +27,12 @@ public partial class GameData : Node
 
     public Array<UpgradeData> GetRandomUpgrades()
     {
-        Array<UpgradeData> filteredUpgrades = (Array<UpgradeData>)upgrades.Where(x => !IsMaxLevel(x.name));
+        Array<UpgradeData> filteredUpgrades = new Array<UpgradeData>(upgrades.Where(x => !IsMaxLevel(x.stat)));
         Array<UpgradeData> randomUpgrades = new Array<UpgradeData>();
         int numUpgrades = 3;
         for (int i = 0; i < numUpgrades; i++)
         {
-            UpgradeData upgrade = GetUpgradeData(filteredUpgrades.PickRandom().name);
+            UpgradeData upgrade = filteredUpgrades.PickRandom();
             randomUpgrades.Add(upgrade);
             filteredUpgrades.Remove(upgrade);
         }

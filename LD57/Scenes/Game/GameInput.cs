@@ -53,4 +53,9 @@ public partial class GameInput : Node
     {
         return shootDir;
     }
+
+    public bool GetLevelCheatDown()
+    {
+        return Input.IsActionJustPressed(Inputs.LevelCheat);
+    }
 }

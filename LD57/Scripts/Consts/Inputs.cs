@@ -12,4 +12,6 @@ public static class Inputs
     public const string ShootRight = "ShootRight";
     public const string ShootUp = "ShootUp";
     public const string ShootDown = "ShootDown";
+
+    public const string LevelCheat = "LevelCheat";
 }

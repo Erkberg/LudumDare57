@@ -4,10 +4,10 @@
 
 [resource]
 script = ExtResource("1_vkue2")
-stat = "PlayerAttackSpeed"
+stat = "PlayerProjectileDamage"
 initialValue = 1.0
 valuePerLevel = 1.0
-name = "Attack Speed"
+name = "Damage"
 description = ""
 maxLevel = 3
 metadata/_custom_type_script = "uid://cjktm082ax83i"

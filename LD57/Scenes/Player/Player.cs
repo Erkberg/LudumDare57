@@ -19,7 +19,9 @@ public partial class Player : CharacterBody2D
 
         shootCooldownTimer.Timeout += OnShootCooldown;
 
-        OnHealthUpgraded();
+        float maxHealth = Game.inst.data.GetUpgradeData(Stats.PlayerMaxHealth).initialValue;
+        health.MaxHealth = maxHealth;
+        health.CurrentHealth = maxHealth;
     }
 
     public override void _Process(double delta)
@@ -48,6 +50,7 @@ public partial class Player : CharacterBody2D
         CheckAdditionalShots();
 
         shootCooldownTimer.WaitTime = 1f / Game.inst.state.GetStatValue(Stats.PlayerAttackSpeed);
+        shootCooldownTimer.Start();
     }
 
     private void SpawnProjectile(Vector2 spawnPos, Vector2 moveDir)

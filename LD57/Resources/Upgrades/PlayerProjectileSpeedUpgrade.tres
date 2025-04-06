@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_s8abb")
-stat = "PlayerProjectileDamage"
+stat = "PlayerProjectileSpeed"
 initialValue = 200.0
 valuePerLevel = 200.0
 name = "Projectile Speed"

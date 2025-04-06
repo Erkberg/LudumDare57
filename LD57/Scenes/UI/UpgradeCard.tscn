@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://hskne0y570k3"]
+
+[ext_resource type="Script" uid="uid://c3nmlcne44ks0" path="res://Scenes/UI/UpgradeCard.cs" id="1_bh2l2"]
+
+[node name="UpgradeCard" type="PanelContainer" node_paths=PackedStringArray("nameLabel", "pickButton")]
+process_mode = 3
+custom_minimum_size = Vector2(150, 150)
+offset_right = 150.0
+offset_bottom = 150.0
+script = ExtResource("1_bh2l2")
+nameLabel = NodePath("MarginContainer/VBoxContainer/NameLabel")
+pickButton = NodePath("MarginContainer/VBoxContainer/PickButton")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="NameLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Damage"
+horizontal_alignment = 1
+
+[node name="PickButton" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Pick"

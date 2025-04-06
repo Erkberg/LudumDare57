@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://br6uwc6kmc3bh"]
+[gd_scene load_steps=10 format=3 uid="uid://br6uwc6kmc3bh"]
 
 [ext_resource type="Script" uid="uid://bnmt8y524qtu8" path="res://Scenes/World/World.cs" id="1_0nbjp"]
 [ext_resource type="Script" uid="uid://dwjo32fh4dnxb" path="res://Scenes/UI/IngameUI.cs" id="2_87yka"]
@@ -6,17 +6,22 @@
 [ext_resource type="PackedScene" uid="uid://13wrxxljsy7i" path="res://Scenes/Player/Player.tscn" id="2_xf6vi"]
 [ext_resource type="Script" uid="uid://drs5vjcuvennl" path="res://Scenes/World/ScrapsUI.cs" id="3_kjd5s"]
 [ext_resource type="Script" uid="uid://bak4a176tri4o" path="res://Scenes/Enemies/EnemySpawner.cs" id="4_5jr8x"]
+[ext_resource type="Script" uid="uid://dmvaprvsaesya" path="res://Scenes/UI/UpgradeUI.cs" id="4_kjd5s"]
 [ext_resource type="PackedScene" uid="uid://b1bltvurq11mo" path="res://Scenes/Enemies/Enemy.tscn" id="5_27jhl"]
+[ext_resource type="PackedScene" uid="uid://hskne0y570k3" path="res://Scenes/UI/UpgradeCard.tscn" id="5_p7pgw"]
 
-[node name="World" type="Node2D" node_paths=PackedStringArray("player")]
+[node name="World" type="Node2D" node_paths=PackedStringArray("player", "ui")]
 script = ExtResource("1_0nbjp")
 player = NodePath("Base/Player")
+ui = NodePath("IngameUI")
 bounds = Vector2(1280, 720)
 spawnOffset = Vector2(128, 72)
 gridOffset = 64.0
 
-[node name="IngameUI" type="CanvasLayer" parent="."]
+[node name="IngameUI" type="CanvasLayer" parent="." node_paths=PackedStringArray("scrapsUI", "upgradeUI")]
 script = ExtResource("2_87yka")
+scrapsUI = NodePath("ScrapsUI")
+upgradeUI = NodePath("UpgradeUI")
 
 [node name="ScrapsUI" type="Control" parent="IngameUI" node_paths=PackedStringArray("progressBar", "levelLabel")]
 custom_minimum_size = Vector2(0, 8)
@@ -48,6 +53,65 @@ offset_left = -40.0
 offset_bottom = 23.0
 grow_horizontal = 0
 text = "Level 0"
+
+[node name="UpgradeUI" type="Control" parent="IngameUI" node_paths=PackedStringArray("upgradeCardContainer")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_kjd5s")
+upgradeCardScene = ExtResource("5_p7pgw")
+upgradeCardContainer = NodePath("HBoxContainer")
+
+[node name="Background" type="ColorRect" parent="IngameUI/UpgradeUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.501961)
+
+[node name="Label" type="Label" parent="IngameUI/UpgradeUI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -224.0
+offset_top = 100.0
+offset_right = 224.0
+offset_bottom = 167.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
+text = "Choose an upgrade"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="IngameUI/UpgradeUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="UpgradeCard" parent="IngameUI/UpgradeUI/HBoxContainer" instance=ExtResource("5_p7pgw")]
+layout_mode = 2
+
+[node name="UpgradeCard2" parent="IngameUI/UpgradeUI/HBoxContainer" instance=ExtResource("5_p7pgw")]
+layout_mode = 2
+
+[node name="UpgradeCard3" parent="IngameUI/UpgradeUI/HBoxContainer" instance=ExtResource("5_p7pgw")]
+layout_mode = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(640, 360)
