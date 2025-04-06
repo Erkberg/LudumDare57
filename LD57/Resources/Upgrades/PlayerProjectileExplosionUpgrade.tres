@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3 uid="uid://chlidjx7pseh3"]
+
+[ext_resource type="Script" uid="uid://cjktm082ax83i" path="res://Scripts/Data/UpgradeData.cs" id="1_0keo0"]
+
+[resource]
+script = ExtResource("1_0keo0")
+stat = "PlayerProjectileExplosion"
+initialValue = 0.0
+valuePerLevel = 1.0
+name = "Explosion"
+description = ""
+maxLevel = 3
+metadata/_custom_type_script = "uid://cjktm082ax83i"

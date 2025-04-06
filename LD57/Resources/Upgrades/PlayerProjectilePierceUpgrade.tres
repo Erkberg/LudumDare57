@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3 uid="uid://c1fospi1ar3tw"]
+
+[ext_resource type="Script" uid="uid://cjktm082ax83i" path="res://Scripts/Data/UpgradeData.cs" id="1_ap8t5"]
+
+[resource]
+script = ExtResource("1_ap8t5")
+stat = "PlayerProjectilePierce"
+initialValue = 0.0
+valuePerLevel = 1.0
+name = "Pierce"
+description = ""
+maxLevel = 3
+metadata/_custom_type_script = "uid://cjktm082ax83i"

@@ -1,5 +1,7 @@
 using Godot;
+using Godot.Collections;
 using System;
+using System.Collections.Generic;
 
 public partial class Player : CharacterBody2D
 {
@@ -7,6 +9,7 @@ public partial class Player : CharacterBody2D
     [Export] private Node2D muzzle;
     [Export] private Timer shootCooldownTimer;
     [Export] private PackedScene projectileScene;
+    [Export] private HealthComponent health;
 
     private GameInput input;
 
@@ -15,6 +18,8 @@ public partial class Player : CharacterBody2D
         input = Game.inst.input;
 
         shootCooldownTimer.Timeout += OnShootCooldown;
+
+        OnHealthUpgraded();
     }
 
     public override void _Process(double delta)
@@ -39,9 +44,39 @@ public partial class Player : CharacterBody2D
 
     private void OnShootCooldown()
     {
+        SpawnProjectile(muzzle.GlobalPosition, muzzle.Position.Normalized());
+        CheckAdditionalShots();
+
+        shootCooldownTimer.WaitTime = 1f / Game.inst.state.GetStatValue(Stats.PlayerAttackSpeed);
+    }
+
+    private void SpawnProjectile(Vector2 spawnPos, Vector2 moveDir)
+    {
         Projectile projectile = projectileScene.Instantiate<Projectile>();
-        projectile.GlobalPosition = muzzle.GlobalPosition;
-        projectile.moveDir = muzzle.Position.Normalized();
+        projectile.GlobalPosition = spawnPos;
+        projectile.moveDir = moveDir;
         GetTree().Root.AddChild(projectile);
+    }
+
+    private void CheckAdditionalShots()
+    {
+        if (Game.inst.state.GetUpgradeLevel(Stats.PlayerAdditionalProjectile) > 0)
+        {
+            Array<Vector2> directions = new Array<Vector2>() { Vector2.Up, Vector2.Down, Vector2.Left, Vector2.Right };
+
+            for (int i = 0; i < Game.inst.state.GetUpgradeLevel(Stats.PlayerAdditionalProjectile); i++)
+            {
+                Vector2 dir = directions.PickRandom();
+                directions.Remove(dir);
+                SpawnProjectile(GlobalPosition, dir);
+            }
+        }
+    }
+
+    public void OnHealthUpgraded()
+    {
+        float maxHealth = Game.inst.state.GetStatValue(Stats.PlayerMaxHealth);
+        health.MaxHealth = maxHealth;
+        health.CurrentHealth = maxHealth;
     }
 }

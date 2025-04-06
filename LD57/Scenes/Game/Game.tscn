@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://du37a28gb6on2"]
+[gd_scene load_steps=17 format=3 uid="uid://du37a28gb6on2"]
 
 [ext_resource type="Script" uid="uid://cm67tp0q10qsv" path="res://Scenes/Game/Game.cs" id="1_rdw05"]
 [ext_resource type="Script" uid="uid://bdet4lgxavvj2" path="res://Scenes/Game/GameInput.cs" id="2_gwu2e"]
@@ -7,6 +7,15 @@
 [ext_resource type="Resource" uid="uid://ctu2ju70x00wj" path="res://Resources/Enemies/FastEnemyData.tres" id="5_m1o7v"]
 [ext_resource type="Resource" uid="uid://b0vv1x1hhf6ty" path="res://Resources/Enemies/BigEnemyData.tres" id="6_3586x"]
 [ext_resource type="Script" uid="uid://dtpdoxjeykk3a" path="res://Scenes/Game/GameState.cs" id="7_10ki7"]
+[ext_resource type="Resource" uid="uid://co81u6x8av6s7" path="res://Resources/Upgrades/PlayerAdditionalProjectileUpgrade.tres" id="7_jf0ra"]
+[ext_resource type="Resource" uid="uid://fgymbyvrg2ay" path="res://Resources/Upgrades/PlayerAttackSpeedUpgrade.tres" id="8_fg52j"]
+[ext_resource type="Resource" uid="uid://cnywgy5fxkgmy" path="res://Resources/Upgrades/PlayerMaxHealthUpgrade.tres" id="9_6581v"]
+[ext_resource type="Resource" uid="uid://dwlet83u3slar" path="res://Resources/Upgrades/PlayerProjectileDamageUpgrade.tres" id="10_6hht6"]
+[ext_resource type="Resource" uid="uid://chlidjx7pseh3" path="res://Resources/Upgrades/PlayerProjectileExplosionUpgrade.tres" id="11_kjp6r"]
+[ext_resource type="Resource" uid="uid://deyciflteup1t" path="res://Resources/Upgrades/PlayerProjectileKnockbackUpgrade.tres" id="12_5hno3"]
+[ext_resource type="Resource" uid="uid://c1fospi1ar3tw" path="res://Resources/Upgrades/PlayerProjectilePierceUpgrade.tres" id="13_88irt"]
+[ext_resource type="Resource" uid="uid://c5un2uv1e48ia" path="res://Resources/Upgrades/PlayerProjectileRangeUpgrade.tres" id="14_mbp0e"]
+[ext_resource type="Resource" uid="uid://cu8lfgl058u8x" path="res://Resources/Upgrades/PlayerProjectileSpeedUpgrade.tres" id="15_fg52j"]
 
 [node name="Game" type="Node" node_paths=PackedStringArray("input", "data", "state")]
 script = ExtResource("1_rdw05")
@@ -20,6 +29,7 @@ script = ExtResource("2_gwu2e")
 [node name="GameData" type="Node" parent="."]
 script = ExtResource("3_1q8bt")
 enemies = Array[Object]([ExtResource("4_gvja8"), ExtResource("5_m1o7v"), ExtResource("6_3586x")])
+upgrades = Array[Object]([ExtResource("7_jf0ra"), ExtResource("8_fg52j"), ExtResource("9_6581v"), ExtResource("10_6hht6"), ExtResource("11_kjp6r"), ExtResource("12_5hno3"), ExtResource("13_88irt"), ExtResource("14_mbp0e"), ExtResource("15_fg52j")])
 
 [node name="GameState" type="Node" parent="."]
 script = ExtResource("7_10ki7")

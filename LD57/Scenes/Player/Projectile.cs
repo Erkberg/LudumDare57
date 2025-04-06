@@ -4,8 +4,8 @@ using System;
 public partial class Projectile : Area2D
 {
     public Vector2 moveDir;
-    public float moveSpeed = 200f;
-    public float damage = 1f;
+
+    private int piercesUsed;
 
     private const string ProjectileName = "Projectile";
 
@@ -23,15 +23,28 @@ public partial class Projectile : Area2D
 
     private void Move(float delta)
     {
-        GlobalPosition += moveDir * delta * moveSpeed;
+        GlobalPosition += moveDir * delta * Game.inst.state.GetStatValue(Stats.PlayerProjectileSpeed);
     }
 
     private void OnAreaEntered(Area2D other)
     {
         if (other is Enemy enemy)
         {
-            enemy.DoDamage(damage);
-            QueueFree();
+            enemy.DoDamage(Game.inst.state.GetStatValue(Stats.PlayerProjectileDamage));
+
+            if (Game.inst.state.GetStatValue(Stats.PlayerProjectileKnockback) > 0)
+            {
+                enemy.ApplyKnockback(Game.inst.state.GetStatValue(Stats.PlayerProjectileKnockback));
+            }
+
+            if (Game.inst.state.GetStatValue(Stats.PlayerProjectilePierce) > piercesUsed)
+            {
+                piercesUsed++;
+            }
+            else
+            {
+                QueueFree();
+            }
         }
     }
 

@@ -62,6 +62,11 @@ public partial class Enemy : Area2D
         health.Damage(amount);
     }
 
+    public void ApplyKnockback(float strength)
+    {
+        GlobalPosition -= moveDir * strength;
+    }
+
     private void OnDied()
     {
         ResourceDrop drop = resourceDropScene.Instantiate<ResourceDrop>();
