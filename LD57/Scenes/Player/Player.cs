@@ -3,9 +3,9 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
-    [Export] private float moveSpeed = 500f;
-    [Export] private float jumpStrength = 400f;
-    [Export] private float gravity = 10f;
+    [Export] private float posOffset = 100f;
+    [Export] private float muzzleOffset = 25f;
+    [Export] private Node2D muzzle;
 
     private GameInput input;
 
@@ -16,27 +16,19 @@ public partial class Player : CharacterBody2D
 
     public override void _Process(double delta)
     {
-        CheckJump();
         Move();
-    }
-
-    private void CheckJump()
-    {
-        if (input.GetJumpDown())
-        {
-            Vector2 velo = Velocity;
-            velo.Y = -jumpStrength;
-            Velocity = velo;
-        }
+        Shoot();
     }
 
     private void Move()
     {
-        float movement = input.GetMovement();
-        Vector2 velo = Velocity;
-        velo.X = movement * moveSpeed;
-        velo.Y += gravity;
-        Velocity = velo;
-        MoveAndSlide();
+        Vector2 movement = input.GetMovement();
+        Position = new Vector2(Mathf.RoundToInt(movement.X) * posOffset, Mathf.RoundToInt(movement.Y) * posOffset);
+    }
+
+    private void Shoot()
+    {
+        Vector2 shootDir = input.GetShootDir();
+        muzzle.Position = shootDir * muzzleOffset;
     }
 }

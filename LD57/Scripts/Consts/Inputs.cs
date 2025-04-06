@@ -7,6 +7,9 @@ public static class Inputs
     public const string MoveRight = "MoveRight";
     public const string MoveUp = "MoveUp";
     public const string MoveDown = "MoveDown";
-    public const string Jump = "Jump";
-    public const string Dash = "Dash";
+
+    public const string ShootLeft = "ShootLeft";
+    public const string ShootRight = "ShootRight";
+    public const string ShootUp = "ShootUp";
+    public const string ShootDown = "ShootDown";
 }
