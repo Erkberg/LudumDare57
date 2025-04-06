@@ -6,8 +6,6 @@ public partial class EnemySpawner : Node2D
     [Export] private PackedScene enemyScene;
     [Export] private Timer spawnTimer;
 
-    private const string EnemyName = "Enemy";
-
     public override void _Ready()
     {
         spawnTimer.Timeout += SpawnEnemy;
@@ -20,7 +18,8 @@ public partial class EnemySpawner : Node2D
         Enemy enemy = enemyScene.Instantiate<Enemy>();
         GetTree().Root.AddChild(enemy);
         SetSpawnPositionAndMoveDir(enemy);
-        enemy.Name = EnemyName;
+        EnemyData enemyData = Game.inst.data.GetRandomEnemyData();
+        enemy.InitFromData(enemyData);
     }
 
     private void SetSpawnPositionAndMoveDir(Enemy enemy)

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://bg8wkkayxyvxo"]
+
+[ext_resource type="Script" uid="uid://cj0sfybgjoimj" path="res://Scripts/Data/EnemyData.cs" id="1_b0pm8"]
+[ext_resource type="Texture2D" uid="uid://c37nwhrt5t02u" path="res://Assets/Sprites/Shapes/Square.svg" id="2_1tvxv"]
+
+[resource]
+script = ExtResource("1_b0pm8")
+type = "Default"
+sprite = ExtResource("2_1tvxv")
+health = 2.0
+speed = 100.0
+damage = 2.0
+spriteScale = 0.2
+colliderSize = Vector2(50, 50)
+metadata/_custom_type_script = "uid://cj0sfybgjoimj"

@@ -1,11 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://du37a28gb6on2"]
+[gd_scene load_steps=8 format=3 uid="uid://du37a28gb6on2"]
 
 [ext_resource type="Script" uid="uid://cm67tp0q10qsv" path="res://Scenes/Game/Game.cs" id="1_rdw05"]
 [ext_resource type="Script" uid="uid://bdet4lgxavvj2" path="res://Scenes/Game/GameInput.cs" id="2_gwu2e"]
+[ext_resource type="Script" uid="uid://dx1f16k6cw4do" path="res://Scenes/Game/GameData.cs" id="3_1q8bt"]
+[ext_resource type="Resource" uid="uid://bg8wkkayxyvxo" path="res://Resources/Enemies/DefaultEnemyData.tres" id="4_gvja8"]
+[ext_resource type="Resource" uid="uid://ctu2ju70x00wj" path="res://Resources/Enemies/FastEnemyData.tres" id="5_m1o7v"]
+[ext_resource type="Resource" uid="uid://b0vv1x1hhf6ty" path="res://Resources/Enemies/BigEnemyData.tres" id="6_3586x"]
+[ext_resource type="Script" uid="uid://dtpdoxjeykk3a" path="res://Scenes/Game/GameState.cs" id="7_10ki7"]
 
-[node name="Game" type="Node" node_paths=PackedStringArray("input")]
+[node name="Game" type="Node" node_paths=PackedStringArray("input", "data", "state")]
 script = ExtResource("1_rdw05")
 input = NodePath("GameInput")
+data = NodePath("GameData")
+state = NodePath("GameState")
 
 [node name="GameInput" type="Node" parent="."]
 script = ExtResource("2_gwu2e")
+
+[node name="GameData" type="Node" parent="."]
+script = ExtResource("3_1q8bt")
+enemies = Array[Object]([ExtResource("4_gvja8"), ExtResource("5_m1o7v"), ExtResource("6_3586x")])
+
+[node name="GameState" type="Node" parent="."]
+script = ExtResource("7_10ki7")

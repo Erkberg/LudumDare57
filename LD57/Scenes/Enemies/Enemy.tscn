@@ -1,17 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://b1bltvurq11mo"]
+[gd_scene load_steps=7 format=3 uid="uid://b1bltvurq11mo"]
 
 [ext_resource type="Script" uid="uid://clucdejyjis3g" path="res://Scenes/Enemies/Enemy.cs" id="1_8o0hk"]
 [ext_resource type="Texture2D" uid="uid://c37nwhrt5t02u" path="res://Assets/Sprites/Shapes/Square.svg" id="1_ucmt6"]
+[ext_resource type="PackedScene" uid="uid://bus7o1x7k8cth" path="res://Resources/Enemies/ResourceDrop.tscn" id="2_35yb6"]
 [ext_resource type="Script" uid="uid://2n6xvfh5k2yo" path="res://Scripts/Shake2D.cs" id="2_qwcx1"]
 [ext_resource type="Script" uid="uid://cl3gqhmnj164l" path="res://Scripts/Components/HealthComponent.cs" id="4_35yb6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8o0hk"]
+resource_local_to_scene = true
 size = Vector2(50, 50)
 
-[node name="Enemy" type="Area2D" node_paths=PackedStringArray("health", "spriteShake")]
+[node name="Enemy" type="Area2D" node_paths=PackedStringArray("health", "spriteShake", "sprite", "collisionShape")]
 script = ExtResource("1_8o0hk")
 health = NodePath("Health")
 spriteShake = NodePath("SpriteHolder")
+sprite = NodePath("SpriteHolder/Sprite2D")
+collisionShape = NodePath("CollisionShape2D")
+resourceDropScene = ExtResource("2_35yb6")
 
 [node name="SpriteHolder" type="Node2D" parent="."]
 script = ExtResource("2_qwcx1")

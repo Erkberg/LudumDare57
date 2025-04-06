@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://ctu2ju70x00wj"]
+
+[ext_resource type="Script" uid="uid://cj0sfybgjoimj" path="res://Scripts/Data/EnemyData.cs" id="1_j4hlo"]
+[ext_resource type="Texture2D" uid="uid://dxe6wh0q6268s" path="res://Assets/Sprites/Shapes/TriangleUp.svg" id="2_j4hlo"]
+
+[resource]
+script = ExtResource("1_j4hlo")
+type = "Fast"
+sprite = ExtResource("2_j4hlo")
+health = 1.0
+speed = 300.0
+damage = 1.0
+spriteScale = 0.1
+colliderSize = Vector2(30, 30)
+metadata/_custom_type_script = "uid://cj0sfybgjoimj"
