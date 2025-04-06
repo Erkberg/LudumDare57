@@ -4,12 +4,15 @@ using System;
 public partial class Projectile : Area2D
 {
     public Vector2 moveDir;
-    public float moveSpeed = 100f;
+    public float moveSpeed = 200f;
     public float damage = 1f;
+
+    private const string ProjectileName = "Projectile";
 
     override public void _Ready()
     {
         AreaEntered += OnAreaEntered;
+        Name = ProjectileName;
     }
 
     public override void _Process(double delta)
@@ -34,7 +37,7 @@ public partial class Projectile : Area2D
 
     private void CheckDestroy()
     {
-        if (GlobalPosition.X < 0 || GlobalPosition.X > World.inst.bounds.X || GlobalPosition.Y < 0 || GlobalPosition.Y > World.inst.bounds.Y)
+        if (World.inst.IsOusideBounds(GlobalPosition))
         {
             QueueFree();
         }

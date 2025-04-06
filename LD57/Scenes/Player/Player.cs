@@ -19,14 +19,15 @@ public partial class Player : CharacterBody2D
 
     public override void _Process(double delta)
     {
-        Move();
+        Move((float)delta);
         Shoot();
     }
 
-    private void Move()
+    private void Move(float delta)
     {
         Vector2 movement = input.GetMovement();
-        Position = new Vector2(Mathf.RoundToInt(movement.X) * World.inst.gridOffset, Mathf.RoundToInt(movement.Y) * World.inst.gridOffset);
+        Vector2 targetPos = new Vector2(Mathf.RoundToInt(movement.X) * World.inst.gridOffset, Mathf.RoundToInt(movement.Y) * World.inst.gridOffset);
+        Position = Position.MoveToward(targetPos, delta * 1000);
     }
 
     private void Shoot()
