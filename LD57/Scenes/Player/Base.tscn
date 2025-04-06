@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3aft5u1nxmsf"]
+[gd_scene load_steps=5 format=3 uid="uid://d3aft5u1nxmsf"]
 
 [ext_resource type="Script" uid="uid://1igkj7nbxnt4" path="res://Scenes/Player/Base.cs" id="1_o3s13"]
 [ext_resource type="Texture2D" uid="uid://2evg63exeelh" path="res://Assets/Sprites/Shapes/SquareRounded.svg" id="2_o3s13"]
+[ext_resource type="Script" uid="uid://cl3gqhmnj164l" path="res://Scripts/Components/HealthComponent.cs" id="3_awpj4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_awpj4"]
 size = Vector2(150, 150)
 
-[node name="Base" type="Area2D"]
+[node name="Base" type="Area2D" node_paths=PackedStringArray("health")]
 script = ExtResource("1_o3s13")
+health = NodePath("Health")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 self_modulate = Color(1, 1, 1, 0.12549)
@@ -16,3 +18,8 @@ texture = ExtResource("2_o3s13")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_awpj4")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("3_awpj4")
+MaxHealth = 4.0
+CurrentHealth = 4.0

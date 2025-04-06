@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://b1bltvurq11mo"]
+
+[ext_resource type="Script" uid="uid://clucdejyjis3g" path="res://Scenes/Enemies/Enemy.cs" id="1_8o0hk"]
+[ext_resource type="Texture2D" uid="uid://c37nwhrt5t02u" path="res://Assets/Sprites/Shapes/Square.svg" id="1_ucmt6"]
+[ext_resource type="Script" uid="uid://2n6xvfh5k2yo" path="res://Scripts/Shake2D.cs" id="2_qwcx1"]
+[ext_resource type="Script" uid="uid://cl3gqhmnj164l" path="res://Scripts/Components/HealthComponent.cs" id="4_35yb6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8o0hk"]
+size = Vector2(50, 50)
+
+[node name="Enemy" type="Area2D" node_paths=PackedStringArray("health", "spriteShake")]
+script = ExtResource("1_8o0hk")
+health = NodePath("Health")
+spriteShake = NodePath("SpriteHolder")
+
+[node name="SpriteHolder" type="Node2D" parent="."]
+script = ExtResource("2_qwcx1")
+duration = 0.33
+magnitude = 4.0
+diminishingMagnitude = true
+
+[node name="Sprite2D" type="Sprite2D" parent="SpriteHolder"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_ucmt6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8o0hk")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("4_35yb6")
+MaxHealth = 3.0
+CurrentHealth = 3.0
